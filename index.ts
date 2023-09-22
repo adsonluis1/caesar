@@ -4,29 +4,40 @@
 // transformar os numeros em letras
 // dar o texto cifrado(criptografado)
 
-const abc = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 let number:number[] = []
 let textoCifrado:string[]= []
-function TransformarLetraEmNum(texto:string,key:number=1){
 
-    texto.match(/[a-z]/ig).map((evt)=>{
-        if(evt.charCodeAt(0) + key > 123 ){
-            number.push(evt.charCodeAt(0) - 26 + key)
-        }else{
-           number.push( evt.charCodeAt(0) + key)
-        }
-    })
-    TransformandoNumEmLetras()
-    return number
+function hehe (texto:string,key:number=1){
+    // 33 = ! , 44= ,
+    let tam:number = texto.length
+    let final:string = ''
 
-}
+    for(let i = 0;tam > i;i++){
+        number.push(texto.charCodeAt(i))
+    }
 
-function TransformandoNumEmLetras(){
     number.map((evt)=>{
-       textoCifrado.push( String.fromCharCode(evt))
+        if(evt +key > 122){
+        textoCifrado.push(String.fromCharCode(evt + key - 26))
+        } else if(evt > 65 && evt < 90 ){
+            if(evt + key > 90){
+            textoCifrado.push(String.fromCharCode(evt + key - 26))
+            }else{
+                textoCifrado.push(String.fromCharCode(evt + key))
+            }
+        } else if(evt == 32 || evt == 44){
+            textoCifrado.push(String.fromCharCode(evt))
+        }
+        else{
+            textoCifrado.push(String.fromCharCode(evt + key))
+        }
+       
     })
 
-    console.log(textoCifrado.toString())
+    console.log(textoCifrado)
+    console.log(textoCifrado.join(''))
+    console.log(number)
 }
 
-console.log(TransformarLetraEmNum('hello, world' , 13))
+hehe('be, sure, to drink your Ovaltine' , 13)
+
